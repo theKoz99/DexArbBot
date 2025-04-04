@@ -3,7 +3,7 @@ require("@nomicfoundation/hardhat-verify");
 require("dotenv").config();
 
 module.exports = {
-  solidity: "0.8.17",
+  solidity: "0.8.20",
   networks: {
     arbitrum: {
       url: process.env.ARB_ALCHEMY_URL,
