@@ -1,0 +1,10 @@
+{
+    "title": "Arbitrage Bot Metrics",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "Profit per Trade",
+        "targets": [{"expr": "bot_profit_usd"}]
+      }
+    ]
+  }

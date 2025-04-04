@@ -1,4 +1,3 @@
-version: '3'
 services:
   prometheus:
     image: prom/prometheus
@@ -14,3 +13,11 @@ services:
       - "3000:3000"
     depends_on:
       - prometheus
+    volumes:
+    - ./monitoring/grafana/provisioning/:/etc/grafana/provisioning/
+    - ./monitoring/grafana/dashboards/:/var/lib/grafana/dashboards/
+
+  arbitrage-bot:
+    image: your-bot-image
+    ports:
+      - "8000:8000"  # Expose metrics port
