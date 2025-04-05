@@ -4,8 +4,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  
-    command: --config.file=/etc/prometheus/prometheus.yml
+      - ./monitoring/prometheus/config.yml:/etc/prometheus/prometheus.yml
     depends_on:
       - arbitrage-bot  # Wait for bot to start
 
@@ -21,5 +20,10 @@ services:
 
   arbitrage-bot:
     build: ./  # Build from Dockerfile in the current directory
+    environment:
+      - PRIVATE_KEY=${PRIVATE_KEY}  # Pass secrets securely
+      - RPC_URL=${RPC_URL}
     ports:
       - "8000:8000"  # Expose metrics port
+    depends_on:
+      - prometheus

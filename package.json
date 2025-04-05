@@ -7,6 +7,7 @@
     "test": "test"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^5.0.1",
     "abbrev": "^1.0.9",
     "acorn": "^8.14.1",
     "acorn-walk": "^8.3.4",
@@ -252,7 +253,6 @@
     "pathval": "^1.1.1",
     "pbkdf2": "^3.1.2",
     "picocolors": "^1.1.1",
-    "picomatch": "^2.3.1",
     "pify": "^4.0.1",
     "prelude-ls": "^1.1.2",
     "prettier": "^2.8.8",
@@ -377,7 +377,8 @@
     "@typechain/hardhat": "^9.1.0",
     "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
-    "mocha": "^10.8.2"
+    "mocha": "^10.8.2",
+    "picomatch": "^4.0.2"
   },
   "scripts": {
     "test": "mocha"
