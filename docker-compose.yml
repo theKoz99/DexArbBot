@@ -1,29 +1,23 @@
 services:
+  arbitrage-bot:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PRIVATE_KEY=${PRIVATE_KEY}
+      - RPC_URL=${RPC_URL}
+    networks:
+      - arb-network  # Connect to shared network
+
   prometheus:
     image: prom/prometheus
-    ports:
-      - "9090:9090"
     volumes:
       - ./monitoring/prometheus/config.yml:/etc/prometheus/prometheus.yml
-    depends_on:
-      - arbitrage-bot  # Wait for bot to start
-
-  grafana:
-    image: grafana/grafana
     ports:
-      - "3000:3000"
-    depends_on:
-      - prometheus
-    volumes:
-    - ./monitoring/grafana/provisioning/:/etc/grafana/provisioning/
-    - ./monitoring/grafana/dashboards/:/var/lib/grafana/dashboards/
+      - "9090:9090"
+    networks:
+      - arb-network  # Same network
 
-  arbitrage-bot:
-    build: ./  # Build from Dockerfile in the current directory
-    environment:
-      - PRIVATE_KEY=${PRIVATE_KEY}  # Pass secrets securely
-      - RPC_URL=${RPC_URL}
-    ports:
-      - "8000:8000"  # Expose metrics port
-    depends_on:
-      - prometheus
+networks:
+  arb-network:  # Define a custom network
+    driver: bridge

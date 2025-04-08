@@ -1,7 +1,4 @@
-global:
-  scrape_interval: 15s
-
 scrape_configs:
-  - job_name: 'arbitrage-bot'
+  - job_name: "arbitrage-bot"
     static_configs:
-      - targets: ['arbitrage-bot:8000']  # Use Docker service name
+      - targets: ["arbitrage-bot:8000"]  # Target the Docker service name

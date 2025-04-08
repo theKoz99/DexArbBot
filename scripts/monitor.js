@@ -20,6 +20,6 @@ app.get('/metrics', async (req, res) => {
     res.end(await prom.register.metrics());
   });
   
-  app.listen(8000, () => {
+  app.listen(8000, '0.0.0.0', () => {  // Explicitly bind to all interfaces
     console.log('Metrics server running on port 8000');
   });
